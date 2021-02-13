@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block page title %}Employees List{% endblock page title %}
+
+{% block title %}Employees List{% endblock title %}
+
+{% block desc %}
+
+Here is the list of all employees in our organisation
+
+{% endblock desc %}
+
+{% block body %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile Number</td>
+            <td>Position</td>
+            <td>
+                <a href="{% url 'employee_reg' %}" class="btn btn-outline-success">
+                    <i class="fa fa-plus"></i> Add new user
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emp in employee_list %}
+
+            <tr>
+                <td>{{emp.name}}</td>
+                <td>{{emp.mobile_no}}</td>
+                <td>{{emp.position}}</td>
+                <td>
+                    <a href="{% url 'employee_update' emp.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-edit fa-lg"></i>
+                    </a>
+
+                    <form action="{% url 'employee_delete' emp.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="fa fa-trash fa-lg text-danger float-right "></i>
+                        </button>
+                    </form>
+                </td>
+            
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}
