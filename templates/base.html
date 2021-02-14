@@ -14,9 +14,20 @@
 
 
 
-    <title>{% block page title %}{% endblock page title %}</title>
+    <title>{% block pagetitle %}{% endblock pagetitle %}</title>
   </head>
   <body>
+
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    {% endfor %}
+  {% endif %}
 
     <div class="container">
       <div class="col-md-10 offset-md-1 mt-5">
