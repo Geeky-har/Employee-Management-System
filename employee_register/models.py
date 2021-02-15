@@ -16,3 +16,7 @@ class Employee(models.Model):
 
     # any deletion in Positions table will also be reflected in this table
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
